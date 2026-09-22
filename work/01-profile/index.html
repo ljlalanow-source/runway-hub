@@ -1,0 +1,371 @@
+<title>LJ 2030</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
+<style>
+  :root {
+    --ground: #ECEDED; --surface: #F7F7F6;
+    --ink: #121414; --ink-2: #2A2E2F; --ink-soft: #676C6D; --line: #CFD3D3;
+    --green: #1F8A5E; --green-deep: #15654A; --green-soft: #DDEEE5;
+  }
+  * { box-sizing: border-box; }
+  html { color-scheme: light; scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body { margin: 0; background: var(--ground); color: var(--ink); font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif; font-size: 15px; line-height: 1.75; -webkit-font-smoothing: antialiased; padding-inline: 16px; }
+  .page { max-width: 1120px; margin: 0 auto; background: var(--surface); }
+  h1, h2, h3, p, ul { margin: 0; }
+  ul { padding: 0; list-style: none; }
+  a { color: inherit; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+  [hidden] { display: none !important; }
+  .display { font-family: "Anton", "Noto Sans KR", Impact, sans-serif; font-weight: 400; text-transform: uppercase; }
+  .label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; }
+  .sec-title { font-size: 0.95rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; line-height: 1.6; }
+  .more { color: var(--green); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; text-decoration: none; }
+  .more::after { content: "  \2192"; }
+  .rule { height: 1px; background: var(--line); margin: 0 40px; }
+  .soon { color: var(--ink-soft); }
+
+  /* top bar */
+  .top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 28px 40px 0; gap: 16px; }
+  .top .label { line-height: 1.6; font-weight: 700; }
+  .top .right { text-align: right; }
+  .mono { font-family: "Playfair Display", serif; font-size: 1.15rem; letter-spacing: 0.06em; position: relative; display: inline-block; width: 3.2rem; height: 3rem; text-align: center; }
+  .mono b { position: absolute; font-weight: 400; }
+  .mono b:first-child { left: 0.1rem; top: -0.2rem; } .mono b:last-child { right: 0.1rem; bottom: -0.2rem; }
+  .mono::after { content: ""; position: absolute; left: 1.4rem; top: 0.4rem; width: 1px; height: 2.4rem; background: var(--ink); transform: rotate(28deg); }
+
+  /* 1 hero */
+  .hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 24px; padding: 30px 0 0 40px; align-items: end; }
+  .hero-text { padding-bottom: 46px; }
+  .hero .name { line-height: 1; letter-spacing: 0; }
+  .hero .name span { display: block; }
+  .hero .name span:first-child { font-size: clamp(2.6rem, 6.5vw, 4.6rem); letter-spacing: 0.04em; line-height: 1; color: var(--ink); }
+  .hero .name span:last-child { font-size: clamp(5rem, 15vw, 11.5rem); line-height: 0.92; letter-spacing: -0.01em; margin-top: 0.1em; color: var(--ink); }
+  .hero .name span:last-child::after { content: ""; display: inline-block; width: 0.17em; height: 0.17em; border-radius: 50%; background: var(--green); margin-left: 0.08em; vertical-align: baseline; }
+  .hero .roles { margin-top: 18px; }
+  .hero .roles { font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); font-weight: 500; }
+  .hero .pos { margin-top: 24px; font-size: 1.02rem; font-weight: 500; color: var(--ink); max-width: 26rem; }
+  .hero .intro { margin-top: 4px; max-width: 26rem; font-size: 0.95rem; color: var(--ink-2); }
+  .hero .bar { width: 64px; height: 2px; background: var(--green); margin-top: 26px; }
+  .hero-visual { position: relative; align-self: stretch; min-height: 480px; }
+  .circle { position: absolute; left: 4%; top: 14%; width: 74%; aspect-ratio: 1; border-radius: 50%; background: var(--green); }
+  .photo { position: absolute; right: 0; bottom: 0; width: 88%; height: 96%; display: flex; align-items: flex-end; justify-content: center; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; filter: grayscale(1); }
+  .photo .frame { width: 100%; height: 100%; background: linear-gradient(180deg, rgba(247,247,246,0) 55%, rgba(18,20,20,0.10) 100%), radial-gradient(ellipse 60% 45% at 50% 40%, rgba(18,20,20,0.10), rgba(18,20,20,0) 70%); display: flex; align-items: center; justify-content: center; }
+  .photo .frame span { background: var(--surface); padding: 6px 12px; font-size: 0.66rem; letter-spacing: 0.18em; color: var(--ink-soft); text-transform: uppercase; }
+
+  section { padding: 56px 40px; }
+  .split { display: grid; grid-template-columns: 180px 1fr; gap: 44px; }
+  .split .lead { font-size: 0.9rem; color: var(--ink-2); margin-top: 16px; max-width: 11rem; }
+  .split .more { display: inline-block; margin-top: 40px; }
+
+  /* 2 selected work — 가장 크게 */
+  .works { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .works.two { grid-template-columns: repeat(2, 1fr); }
+  .work { text-decoration: none; display: block; }
+  .work { display: grid; grid-template-rows: auto auto auto auto; }
+  .work .head { display: grid; grid-template-columns: 2.2rem 1fr; gap: 6px; padding-bottom: 10px; margin-bottom: 4px; min-height: 4.2rem; align-content: start; }
+  .work .no { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; }
+  .work .t { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; line-height: 1.5; }
+  .work .c { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.5; }
+  .work .tick { width: 2rem; height: 2px; background: var(--green); margin-bottom: 14px; }
+  .thumb { aspect-ratio: 1 / 1; background: #D8DCDC; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
+  .work:hover .thumb img { transform: scale(1.03); }
+  .work .sum { margin-top: 12px; font-size: 0.86rem; color: var(--ink-2); }
+  .work .mini { color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; margin-left: 4px; }
+  .work:hover .mini { text-decoration: underline; text-underline-offset: 3px; }
+  .mock-tract { width: 56%; aspect-ratio: 3/4; background: #F4F1EA; box-shadow: 0 18px 30px rgba(0,0,0,0.18); position: relative; padding: 10%; }
+  .mock-tract .sun { width: 46%; aspect-ratio: 1; border-radius: 50%; background: var(--green); margin: 8% auto 0; }
+  .mock-tract .ray { position: absolute; left: 50%; top: 18%; width: 1px; height: 22%; background: var(--green); transform-origin: bottom; }
+  .mock-tract .ln { height: 3px; background: #121414; margin: 6% auto 0; width: 60%; }
+  .mock-tract .ln.s { width: 36%; height: 2px; opacity: 0.5; margin-top: 4%; }
+  .mock-book { width: 78%; aspect-ratio: 1.45; display: grid; grid-template-columns: 1fr 1fr; box-shadow: 0 18px 30px rgba(0,0,0,0.18); background: #FFFDF8; }
+  .mock-book .pg { padding: 12%; position: relative; border-right: 1px solid #E3DED2; }
+  .mock-book .pg:last-child { border-right: none; }
+  .mock-book .hill { position: absolute; left: 0; right: 0; bottom: 0; height: 36%; background: var(--green); border-radius: 100% 100% 0 0 / 80% 80% 0 0; }
+  .mock-book .moon { width: 30%; aspect-ratio: 1; border-radius: 50%; background: #121414; margin-left: auto; }
+  .mock-book .txt { height: 2px; background: #121414; width: 70%; margin-top: 10%; opacity: 0.7; }
+  .mock-book .txt.s { width: 45%; margin-top: 6%; opacity: 0.4; }
+  .mock-game { width: 84%; aspect-ratio: 16/10; background: #121414; box-shadow: 0 18px 30px rgba(0,0,0,0.22); position: relative; padding: 6%; color: #F7F7F6; }
+  .mock-game .hud { display: flex; justify-content: space-between; font-size: 0.55rem; letter-spacing: 0.14em; font-family: "Playfair Display", serif; }
+  .mock-game .hp { height: 3px; background: #3A3E3E; margin-top: 6px; width: 40%; }
+  .mock-game .hp i { display: block; height: 100%; width: 72%; background: var(--green); }
+  .mock-game .map { position: absolute; left: 6%; right: 6%; bottom: 6%; height: 52%; background: repeating-linear-gradient(0deg, #1E2222 0 2px, transparent 2px 10px), repeating-linear-gradient(90deg, #1E2222 0 2px, transparent 2px 10px); }
+  .mock-game .dot { position: absolute; left: 48%; bottom: 30%; width: 9%; aspect-ratio: 1; background: var(--green); }
+  .mock-game .q { position: absolute; right: 8%; top: 30%; font-size: 0.7rem; line-height: 1.2; max-width: 40%; }
+  .mock-tile { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 8%; font-family: "Anton", sans-serif; font-size: 2rem; text-transform: uppercase; color: var(--surface); background: var(--green); line-height: 1; }
+
+  /* 3 + 4 : what i do | profile / proof  (참고 이미지의 Skills | Impact 구성) */
+  .two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; }
+  .two > div:last-child { border-left: 1px solid var(--line); padding-left: 48px; }
+  .caps { margin-top: 26px; display: grid; }
+  .cap { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line); background: none; border-top: 0; border-left: 0; border-right: 0; width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; }
+  .cap:first-child { border-top: 1px solid var(--line); }
+  .cap svg { width: 18px; height: 18px; stroke: var(--ink); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; margin-top: 4px; }
+  .cap .t { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+  .cap .t i { width: 40px; height: 1.5px; background: var(--line); position: relative; flex: none; }
+  .cap .t i::after { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--green); transition: width .35s ease; }
+  .cap:hover .t i::after, .cap:focus-visible .t i::after, .cap.open .t i::after { width: 100%; }
+  .cap .d { font-size: 0.86rem; color: var(--ink-2); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .35s ease, opacity .3s ease, margin .3s ease; margin-top: 0; }
+  .cap:hover .d, .cap:focus-visible .d, .cap.open .d { max-height: 4rem; opacity: 1; margin-top: 4px; }
+  .hint { margin-top: 12px; font-size: 0.72rem; color: var(--ink-soft); }
+
+  .nums { margin-top: 30px; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .num { padding: 6px 18px 6px 0; border-right: 1px solid var(--line); margin-right: 18px; }
+  .num:last-child { border-right: none; margin-right: 0; }
+  .num .n { font-family: "Playfair Display", serif; font-size: 2.6rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
+  .num .n sup { font-size: 1.2rem; vertical-align: 0.9em; margin-left: 2px; }
+  .num .label { color: var(--ink-soft); display: block; margin-top: 6px; font-weight: 500; }
+  .facts { margin-top: 26px; display: grid; gap: 0; }
+  .facts li { display: grid; grid-template-columns: 80px 1fr; gap: 14px; font-size: 0.9rem; color: var(--ink); padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .facts li:first-child { border-top: 1px solid var(--line); }
+  .facts li .label { color: var(--green); font-weight: 700; padding-top: 3px; letter-spacing: 0.12em; }
+  .about-box { margin-top: 30px; border: 1px solid var(--line); padding: 24px 26px; display: grid; grid-template-columns: 36px 1fr; gap: 14px; }
+  .about-box .q { font-family: "Playfair Display", serif; font-size: 2.6rem; color: var(--green); line-height: 0.6; margin-top: 10px; }
+  .about-box p { font-size: 0.9rem; color: var(--ink-2); }
+  .about-box .who { display: block; margin-top: 12px; color: var(--green); }
+  .cv { margin-top: 22px; display: inline-block; }
+
+  /* 5 footer with contact */
+  footer { background: var(--ground); padding: 48px 40px 26px; }
+  .connect { display: grid; grid-template-columns: 200px 1.3fr 1fr; gap: 40px; align-items: stretch; }
+  .connect .line { font-size: 0.88rem; color: var(--ink-2); margin-top: 16px; max-width: 12rem; }
+  .group { border-left: 1px solid var(--line); padding-left: 40px; }
+  .group > .label { display: block; color: var(--ink); margin-bottom: 16px; }
+  .items { display: grid; gap: 12px; align-content: start; }
+  .item { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: center; font-size: 0.9rem; color: var(--ink-2); }
+  .item svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .item a { text-decoration: none; border-bottom: 1px solid var(--line); justify-self: start; }
+  .socials { display: flex; gap: 14px; flex-wrap: wrap; }
+  .socials a, .socials span { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; color: var(--ink); text-decoration: none; }
+  .socials span { border-color: var(--line); color: var(--ink-soft); }
+  .socials svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .socials a:hover { border-color: var(--green); color: var(--green); }
+  .foot { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; color: var(--ink-soft); }
+  .foot .label b { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .top, section, footer { padding-inline: 22px; }
+    .rule { margin-inline: 22px; }
+    .hero { grid-template-columns: 1fr; padding: 20px 0 0 22px; }
+    .hero-visual { min-height: 340px; }
+    .split { grid-template-columns: 1fr; gap: 20px; }
+    .split .lead { max-width: 30rem; }
+    .split .more { margin-top: 8px; }
+    .works, .works.two { grid-template-columns: 1fr; }
+    .two { grid-template-columns: 1fr; gap: 40px; }
+    .two > div:last-child { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 40px; }
+    .connect { grid-template-columns: 1fr; }
+    .group { border-left: none; padding-left: 0; }
+  }
+  @media (max-width: 560px) {
+    .top { grid-template-columns: 1fr auto; }
+    .top .right { grid-column: 1 / -1; text-align: left; }
+    .nums { grid-template-columns: 1fr; gap: 14px; }
+    .num { border-right: none; margin-right: 0; border-bottom: 1px solid var(--line); padding: 0 0 14px; }
+    .num:last-child { border-bottom: none; }
+    .facts li { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+
+<div class="page" id="app">
+  <div class="top">
+    <div class="label" id="top-left"></div>
+    <div class="mono" id="mono"></div>
+    <div class="label right" id="top-right"></div>
+  </div>
+
+  <!-- 1 HERO -->
+  <div class="hero" id="hero">
+    <div class="hero-text">
+      <h1 class="name display" id="hero-name"></h1>
+      <div class="roles" id="hero-roles"></div>
+      <p class="pos" id="hero-pos"></p>
+      <p class="intro" id="hero-intro"></p>
+      <div class="bar"></div>
+    </div>
+    <div class="hero-visual">
+      <div class="circle"></div>
+      <div class="photo" id="hero-photo"></div>
+    </div>
+  </div>
+
+  <!-- 2 SELECTED WORK -->
+  <section class="split" id="work">
+    <div>
+      <h2 class="sec-title">Selected<br>Work</h2>
+      <p class="lead" id="work-lead"></p>
+      <a class="more" id="work-all" href="#">View all projects</a>
+    </div>
+    <div class="works" id="work-list"></div>
+  </section>
+
+  <div class="rule"></div>
+
+  <!-- 3 PROFILE / PROOF  |  4 WHAT I DO -->
+  <section class="two">
+    <div id="profile">
+      <h2 class="sec-title">Profile</h2>
+      <ul class="facts" id="fact-list"></ul>
+      <div class="nums" id="num-list"></div>
+      <div class="about-box" id="about-box">
+        <div class="q">&ldquo;</div>
+        <div><div id="about-body"></div><span class="label who" id="about-who"></span></div>
+      </div>
+      <a class="more cv" id="cv-link" hidden></a>
+    </div>
+    <div id="services">
+      <h2 class="sec-title">What I Do</h2>
+      <div class="caps" id="cap-list"></div>
+      <p class="hint">항목에 마우스를 올리면 설명이 보입니다.</p>
+    </div>
+  </section>
+
+  <!-- 5 FOOTER + CONTACT -->
+  <footer id="contact">
+    <div class="connect">
+      <div>
+        <h2 class="sec-title">Let's<br>Connect</h2>
+        <p class="line" id="foot-line"></p>
+      </div>
+      <div class="group">
+        <span class="label">Get in touch</span>
+        <div class="items" id="contact-list"></div>
+      </div>
+      <div class="group follow">
+        <span class="label">Follow along</span>
+        <div class="socials" id="social-list"></div>
+      </div>
+    </div>
+    <div class="foot">
+      <span class="label" id="foot-name"></span>
+      <span class="label" id="foot-copy"></span>
+    </div>
+  </footer>
+</div>
+
+<script src="profile.js"></script>
+<script>
+(function () {
+  const P = window.PROFILE || {};
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const has = (a) => Array.isArray(a) && a.length > 0;
+  const pad = (i) => String(i + 1).padStart(2, "0");
+
+  const ICONS = {
+    direction: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z"/></svg>',
+    story:     '<svg viewBox="0 0 24 24"><path d="M4 5h7a3 3 0 0 1 3 3v11a2 2 0 0 0-2-2H4z"/><path d="M20 5h-7a3 3 0 0 0-3 3v11a2 2 0 0 1 2-2h8z"/></svg>',
+    visual:    '<svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="1"/><path d="M3 16l5-5 4 4 3-3 6 6"/><circle cx="16" cy="9" r="1.5"/></svg>',
+    ip:        '<svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3L20 9.1l-4 3.9.9 5.8L12 16l-4.9 2.8.9-5.8-4-3.9 5.4-.8z"/></svg>',
+    product:   '<svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5-9 5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>',
+    ai:        '<svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/><circle cx="12" cy="12" r="2"/></svg>',
+    research:  '<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4.5-4.5"/></svg>',
+    design:    '<svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16z"/><path d="M13 8l3 3"/></svg>',
+    code:      '<svg viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg>',
+    dot:       '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/></svg>'
+  };
+  const MOCKS = {
+    tract: '<div class="mock-tract"><div class="ray" style="transform:rotate(-30deg)"></div><div class="ray"></div><div class="ray" style="transform:rotate(30deg)"></div><div class="sun"></div><div class="ln"></div><div class="ln s"></div></div>',
+    book:  '<div class="mock-book"><div class="pg"><div class="moon"></div><div class="hill"></div></div><div class="pg"><div class="txt"></div><div class="txt s"></div><div class="txt s"></div></div></div>',
+    game:  '<div class="mock-game"><div class="hud"><span>DAY 128</span><span>LV 12</span></div><div class="hp"><i></i></div><div class="q">오늘의 퀘스트:<br>아침 산책</div><div class="map"></div><div class="dot"></div></div>'
+  };
+
+  const H = P.hero || {}, C = P.contact || {}, F = P.footer || {}, ab = P.about || {}, ex = P.experience || {};
+  const roles = H.roles || [];
+  const year = P.meta?.year || "";
+
+  // top bar
+  document.title = P.meta?.siteTitle || "Profile";
+  $("top-left").textContent = P.meta?.tagline || (H.keywords || []).slice(0, 2).join(" · ");
+  const mono = P.meta?.monogram || [];
+  $("mono").innerHTML = mono.length === 2 ? `<b>${esc(mono[0])}</b><b>${esc(mono[1])}</b>` : "";
+  if (mono.length !== 2) $("mono").style.display = "none";
+  $("top-right").innerHTML = `Portfolio<br>${esc(year)}`;
+
+  // 1 hero
+  const nameLines = has(H.nameLines) ? H.nameLines : [H.name || "", year];
+  $("hero-name").innerHTML = nameLines.map((s) => `<span>${esc(s)}</span>`).join("");
+  $("hero-roles").textContent = roles.join(" · ");
+  $("hero-pos").textContent = H.positioning || "";
+  $("hero-intro").textContent = H.intro || "";
+  $("hero-photo").innerHTML = H.photo ? `<img src="${esc(H.photo)}" alt="${esc(H.name)}">` : `<div class="frame"></div>`;
+
+  // 2 selected work
+  const works = P.work || [];
+  $("work").hidden = !has(works);
+  $("work-lead").textContent = P.workLead || "3년 동안 완성한 대표 작업.";
+  const all = P.workAll || (C.channels || []).find((c) => /hub|flight|log|허브|비행/i.test(c.label))?.url || "";
+  $("work-all").hidden = !all; if (all) $("work-all").href = all;
+  let cls = "works";
+  if (works.length === 4) cls += " two";
+  if (works.length === 5) cls += " two";
+  $("work-list").className = cls;
+  $("work-list").innerHTML = works.map((w, i) => `
+    <a class="work" href="${esc(w.url || "#")}">
+      <div class="head"><span class="no">${pad(i)}</span><div><div class="t">${esc(w.title)}</div><div class="c">${esc(w.category)}</div></div></div>
+      <div class="tick"></div>
+      <div class="thumb">${w.image ? `<img src="${esc(w.image)}" alt="${esc(w.title)}">` : (MOCKS[w.mock] || `<div class="mock-tile">${esc(w.title)}</div>`)}</div>
+      <p class="sum">${esc(w.summary || w.solution || w.desc || "")}${w.url ? ` <span class="mini">more &rarr;</span>` : ""}</p>
+    </a>`).join("");
+
+  // 3 what i do (title only; desc on hover / tap)
+  const sv = P.services || [];
+  $("services").hidden = !has(sv);
+  $("cap-list").innerHTML = sv.map((s) => `
+    <button class="cap" type="button">${ICONS[s.icon] || ICONS.dot}<div><div class="t"><span>${esc(s.title)}</span><i></i></div>${s.desc ? `<div class="d">${esc(s.desc)}</div>` : ""}</div></button>`).join("");
+  $("cap-list").addEventListener("click", (e) => { const b = e.target.closest(".cap"); if (b) b.classList.toggle("open"); });
+
+  // 4 profile / proof
+  const nums = (P.numbers || []).slice(0, 3);
+  $("num-list").hidden = !has(nums);
+  $("num-list").innerHTML = nums.map((n) => `<div class="num"><div class="n">${esc(n.value)}${n.suffix ? `<sup>${esc(n.suffix)}</sup>` : ""}</div><span class="label">${esc(n.label)}</span></div>`).join("");
+  const cur = (ex.roles || [])[0];
+  const facts = [];
+  if (cur) facts.push(["Now", `${cur.title}${cur.org ? " · " + cur.org : ""}${cur.period ? " · " + cur.period : ""}`]);
+  (ex.roles || []).slice(1, 3).forEach((r) => facts.push(["Also", `${r.title}${r.org ? " · " + r.org : ""}${r.period ? " · " + r.period : ""}`]));
+  // Since 줄: background 문자열이 있으면 그대로, 없으면 since{start, field, degree}로 "N년차 …" 자동 계산
+  const sinceLine = ex.background || (ex.since?.start
+    ? `${(parseInt(P.meta?.year, 10) || new Date().getFullYear()) - ex.since.start + 1}년차 ${ex.since.field || ""}${ex.since.degree ? ` (${ex.since.degree})` : ""}`.trim()
+    : "");
+  if (sinceLine) facts.push(["Since", sinceLine]);
+  (ex.credentials || []).slice(0, 2).forEach((r) => facts.push(["Credential", `${r.title}${r.org ? " · " + r.org : ""}`]));
+  (ex.education || []).slice(0, 1).forEach((r) => facts.push(["Education", `${r.title}${r.org ? " · " + r.org : ""}`]));
+  $("fact-list").innerHTML = facts.slice(0, 5).map(([k, v]) => `<li><span class="label">${esc(k)}</span><span>${esc(v)}</span></li>`).join("");
+  $("fact-list").hidden = !facts.length;
+  const aboutText = (ab.body || []).slice(0, 3);
+  $("about-box").hidden = !aboutText.length;
+  $("about-body").innerHTML = aboutText.map((p) => `<p>${esc(p)}</p>`).join("");
+  $("about-who").textContent = `${F.name || H.name || ""}${roles.length ? " · " + roles.join(" · ") : ""}`;
+  if (C.download?.url) { $("cv-link").hidden = false; $("cv-link").href = C.download.url; $("cv-link").textContent = C.download.label || "Download CV"; }
+
+  // 5 footer + contact
+  const mail = C.email ? `mailto:${C.email}` : "";
+  $("foot-line").textContent = F.line || C.headline || "";
+  const ICO = {
+    mail: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 6l9 7 9-7"/></svg>',
+    link: '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg>',
+    down: '<svg viewBox="0 0 24 24"><path d="M12 4v11M7 10l5 5 5-5"/><path d="M4 19h16"/></svg>'
+  };
+  const item = (icon, url, text) => `<div class="item">${icon}${url ? `<a href="${esc(url)}">${esc(text || url)}</a>` : `<span class="soon">${esc(text || "준비 중")}</span>`}</div>`;
+  $("contact-list").innerHTML =
+    `<div class="item">${ICO.mail}<span>${esc(C.email || C.emailPlaceholder || "준비 중")}</span></div>` +
+    (C.channels || []).map((ch) => item(ICO.link, ch.url, ch.text || ch.label)).join("") +
+    (C.download ? item(ICO.down, C.download.url, C.download.label || "Download CV") : "");
+  const SOC = {
+    linkedin:  '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.5M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>',
+    instagram: '<svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5v.01"/></svg>',
+    behance:   '<svg viewBox="0 0 24 24"><path d="M4 7h4.5a2.5 2.5 0 0 1 0 5H4zM4 12h5a2.5 2.5 0 0 1 0 5H4zM14 7h5M13 13.5a3 3 0 0 1 6 0H13a3 3 0 0 0 5.6 1.5"/></svg>',
+    github:    '<svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>',
+    dribbble:  '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.5 8.5c4 1 8.5.5 12-2M3.5 13c5-1 10 0 13.5 5M9 3.5c3 3.5 5.5 8 7 15"/></svg>'
+  };
+  const soc = P.contact?.social || [];
+  $("social-list").innerHTML = soc.map((s) => s.url
+    ? `<a href="${esc(s.url)}" aria-label="${esc(s.icon)}">${SOC[s.icon] || ICO.link}</a>`
+    : `<span title="${esc(s.icon)} · 준비 중">${SOC[s.icon] || ICO.link}</span>`).join("");
+  document.querySelector(".follow").hidden = !soc.length;
+  $("foot-name").innerHTML = `<b>${esc(F.name || "")}</b> · ${esc(F.role || "")}`;
+  $("foot-copy").textContent = F.copyright || "";
+})();
+</script>
