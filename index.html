@@ -178,7 +178,7 @@
 
   <div class="lectures-sec" id="lectures" hidden>
     <div class="section-head">
-      <h2>Lectures</h2>
+      <h2>Talks</h2>
       <span class="mono" id="lec-count"></span>
     </div>
     <ol class="lectures" id="lec-list"></ol>
@@ -304,9 +304,9 @@
   var lectures = D.lectures || [];
   if (lectures.length) {
     var nav = document.getElementById('nav');
-    var navA = el('a', null, 'Lectures'); navA.href = '#lectures'; nav.appendChild(navA);
+    var navA = el('a', null, 'Talks'); navA.href = '#lectures'; nav.appendChild(navA);
     var sec = document.getElementById('lectures'); sec.hidden = false;
-    document.getElementById('lec-count').textContent = lectures.length + (lectures.length === 1 ? ' lecture' : ' lectures');
+    document.getElementById('lec-count').textContent = lectures.length + (lectures.length === 1 ? ' talk' : ' talks');
     var list = document.getElementById('lec-list');
     lectures.forEach(function (L, i) {
       var no = lectures.length - i;
@@ -315,7 +315,7 @@
       if (L.url) { a.href = L.url; a.target = '_blank'; a.rel = 'noopener'; }
       var meta = [L.session, L.date].filter(Boolean).join(' · ');
       a.innerHTML =
-        '<span class="no mono">Lec ' + pad(no) + '</span>' +
+        '<span class="no mono">Talk ' + pad(no) + '</span>' +
         '<div class="lt">' + esc(L.title) + (L.url ? '<span class="arrow" aria-hidden="true">↗</span>' : '') + '</div>' +
         (L.desc ? '<div class="ld">' + esc(L.desc) + '</div>' : '') +
         (meta ? '<span class="lm mono">' + esc(meta) + '</span>' : '');
