@@ -76,10 +76,17 @@ CLAUDE.md의 "카드 한 장 추가하는 절차"대로. 값은 아래를 기본
   date: "2026.09",
   tags: ["Claude Code"],
   url: "<D에서 받은 URL>",
-  thumb: "thumbs/01-profile.png",     // tools/capture.ps1 로 캡처
+  thumb: "thumbs/01-profile.png",     // 아래 고정 앵글로 캡처
   badge: "NEW"
 }
 ```
+
+프로필 썸네일은 **고정 앵글**로 찍는다 — 히어로의 이름·역할·한 줄만 크게, 왼쪽 정렬, 3:2. 원은 잘려도 된다.
+
+```
+powershell -ExecutionPolicy Bypass -File tools/capture.ps1 -Target work/01-profile/index.html -Out thumbs/01-profile.png -Width 960 -Height 640 -CropX 24 -CropY 100 -CropW 720 -CropH 480
+```
+(맥: `bash tools/capture.sh work/01-profile/index.html thumbs/01-profile.png 960 640 24 100 720 480`)
 
 허브 `data.js`의 `profile`은 0단계 답으로 채운다: `name`(0-1) · `accent`(0-2) · `goal`·`goalNote`(0-3). `bio`는 A3 답으로 한 줄(예: "해외영업 담당 HS.").
 `headline`·`intro`·`brand`·`eyebrow`는 공통 문구라 손대지 않는다.
