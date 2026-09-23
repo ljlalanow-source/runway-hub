@@ -7,7 +7,7 @@
     --ink: #121414; --ink-2: #2A2E2F; --ink-soft: #676C6D; --line: #CFD3D3;
     --green: #1F8A5E; --green-deep: #15654A; --green-soft: #DDEEE5;
     /* 키컬러: --accent 는 면(원·막대·목업), --accent-ink 는 글자·아이콘. 기본은 둘 다 초록 */
-    --accent: #1F8A5E; --accent-ink: #1F8A5E;
+    --accent: #1F8A5E; --accent-ink: #1F8A5E;  --accent-text: #FFFFFF;
   }
   * { box-sizing: border-box; }
   html { color-scheme: light; scroll-behavior: smooth; }
@@ -22,7 +22,9 @@
   .display { font-family: "Anton", "Noto Sans KR", Impact, sans-serif; font-weight: 400; text-transform: uppercase; }
   .label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; }
   .sec-title { font-size: 0.95rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; line-height: 1.6; }
-  .more { color: var(--accent-ink); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; text-decoration: none; }
+  /* CTA 버튼 — 키컬러 박스 위에 글자 */
+  .more { display: inline-block; background: var(--accent); color: var(--accent-text); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; text-decoration: none; padding: 10px 16px 9px 18px; line-height: 1.4; white-space: nowrap; transition: filter .2s ease; }
+  .more:hover, .more:focus-visible { filter: brightness(0.94); }
   .more::after { content: "  \2192"; }
   .rule { height: 1px; background: var(--line); margin: 0 40px; }
   .soon { color: var(--ink-soft); }
