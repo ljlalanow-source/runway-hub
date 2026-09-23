@@ -12,6 +12,7 @@
 | `data.js` | 내 소개 + 카드 목록. 유일하게 편집하는 파일 | 여기만 편집 |
 | `thumbs/` | 카드 대표 사진 | 파일 추가 |
 | `work/<카드id>/` | 결과물 원본. 웹페이지면 `index.html`, 그 외는 파일 그대로 | 폴더 추가 |
+| `lectures/<id>/` | 강의 노트 원본 (강의한 사람만). `data.js`의 `lectures`에 넣으면 Lectures 탭이 생긴다 | 폴더 추가 |
 | `tools/capture.ps1` `tools/capture.sh` | 결과물 페이지를 캡처해 대표 사진 만들기 | 실행만 |
 | `fonts/Pretendard.woff2` | 사이트 서체 (한글 2350자 서브셋) | 손대지 않는다 |
 
@@ -69,6 +70,20 @@
 
 허브에는 카드만 있다. 카드를 누르면 결과물 페이지가 **새 창**으로 열린다.
 결과물이 웹페이지라면 그 안에 "문제 / 과정(AI를 어떻게 다뤘나) / 나의 자리 / 결과" 4단을 써 두면 나중에 비핸스·노트폴리오에 그대로 옮길 수 있다. 예시: `work/04-reels-pipeline/index.html`.
+
+## 강의 노트 (선택) — 스터디에서 직접 강의한 사람만
+
+허브 상단 **Lectures** 탭과 목록은 `data.js`의 `lectures` 배열에 항목이 있을 때만 나타난다. 비어 있으면 아무것도 안 보인다. 카드가 아니라 **목록**이라 대표 사진이 필요 없다.
+
+1. 원본은 `lectures/<id>/index.html`에 둔다. id는 `NN-영문슬러그`. 예: `01-ai-agent`
+2. 아티팩트로 게시한다(`fonts/Pretendard.woff2`를 supporting file로 같이). URL을 받는다.
+3. `data.js`의 `lectures` 배열 **맨 앞**에 항목 추가 (최신이 위). 형식:
+   ```js
+   { id: "01-ai-agent", title: "AI 에이전트 이해", desc: "한 줄 요약", session: "1회차 시동", date: "2026.09", url: "https://claude.ai/artifact/…" }
+   ```
+4. 허브 재게시 (위 카드 추가 절차 5번과 같음).
+
+강의 페이지는 허브 결과물 페이지와 같은 토큰(Pretendard + IBM Plex Mono, 라이트 고정, 왼쪽 라벨 2단)으로 쓴다. 예시: `lectures/01-ai-agent/index.html`. 슬라이드의 사진(영화 스틸 등)은 저작권 문제로 싣지 않고 글로 푼다.
 
 ## 첫 번째 프로젝트 — "3년 뒤의 나" 프로필 사이트 (1회차)
 

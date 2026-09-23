@@ -28,6 +28,7 @@ work/01-profile/INTERVIEW.md대로 나를 인터뷰해줘.
 | `data.js` | 내 소개 + 카드 목록. 내용은 여기서만 |
 | `thumbs/` | 카드 대표 사진 |
 | `work/<카드id>/` | 결과물 원본 |
+| `lectures/<id>/` | (선택) 강의 노트 원본. 스터디에서 강의한 사람만. `data.js`의 `lectures`에 넣으면 Lectures 탭이 생깁니다 |
 | `work/01-profile/` | "3년 뒤의 나" 프로필 사이트 틀. `INTERVIEW.md`가 인터뷰 대본, `profile.js`가 내용 |
 | `tools/capture.ps1` | 결과물 페이지를 캡처해 대표 사진 만들기 |
 | `CLAUDE.md` | 클로드 코드가 읽는 규칙. 카드 추가 절차가 여기 있습니다 |

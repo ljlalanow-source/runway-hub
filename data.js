@@ -29,5 +29,11 @@ window.RUNWAY = {
       // thumb: "thumbs/01-profile.png",
       badge: "NEW"
     }
+  ],
+
+  // 강의 노트 (선택) — 스터디에서 직접 강의한 사람만 쓴다. 항목이 있을 때만 상단 Lectures 탭과 목록이 나타난다.
+  // 원본은 lectures/<id>/index.html 에 두고 아티팩트로 게시해 url을 넣는다. 최신이 위로.
+  lectures: [
+    // { id: "01-ai-agent", title: "AI 에이전트 이해", desc: "한 줄 요약", session: "1회차", date: "2026.09", url: "https://claude.ai/artifact/..." }
   ]
 };

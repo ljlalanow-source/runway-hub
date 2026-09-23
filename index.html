@@ -124,6 +124,27 @@
   }
   .empty { grid-column: 1 / -1; color: var(--ink-2); padding: 3rem 0; text-align: center; }
 
+  /* 강의 목록 — data.js 에 lectures 가 있을 때만 나타난다. 카드가 아니라 목록 */
+  .lectures-sec { margin-top: 5.5rem; }
+  .lectures-sec[hidden] { display: none; }
+  .lectures { list-style: none; margin: 0; padding: 0; }
+  .lectures li { border-bottom: 1px solid var(--line); }
+  .lectures .lec {
+    display: grid; grid-template-columns: 5rem minmax(0, 1fr) auto; gap: 0.15rem 1.5rem; align-items: baseline;
+    padding: 1.15rem 0.1rem 1.2rem; text-decoration: none; color: inherit;
+  }
+  .lectures .no { padding-top: 0.2rem; }
+  .lectures .lt { font-family: var(--display); font-weight: 600; font-size: 1.05rem; line-height: 1.45; letter-spacing: -0.01em; text-wrap: balance; }
+  .lectures .lt .arrow { display: inline-block; margin-left: 0.35em; color: var(--accent-ink); opacity: 0; transform: translate(-4px, 2px); transition: opacity 0.2s, transform 0.2s; }
+  .lectures a.lec:hover .lt .arrow, .lectures a.lec:focus-visible .lt .arrow { opacity: 1; transform: none; }
+  .lectures a.lec:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 4px; }
+  .lectures .ld { grid-column: 2; color: var(--ink-2); font-size: 0.9rem; }
+  .lectures .lm { grid-row: 1 / span 2; grid-column: 3; text-align: right; white-space: nowrap; padding-top: 0.2rem; }
+  @media (max-width: 700px) {
+    .lectures .lec { grid-template-columns: 5rem minmax(0, 1fr); }
+    .lectures .lm { grid-row: auto; grid-column: 2; text-align: left; padding-top: 0.3rem; }
+  }
+
   .note { margin-top: 3.5rem; text-align: center; color: var(--ink-3); font-size: 0.9rem; }
   footer { margin-top: 5rem; padding-top: 1.2rem; border-top: 1.5px dashed var(--ink); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; }
 </style>
@@ -154,6 +175,14 @@
   </div>
   <div class="filters" id="filters" aria-label="도구별로 보기"></div>
   <div class="cards" id="grid"></div>
+
+  <div class="lectures-sec" id="lectures" hidden>
+    <div class="section-head">
+      <h2>Lectures</h2>
+      <span class="mono" id="lec-count"></span>
+    </div>
+    <ol class="lectures" id="lec-list"></ol>
+  </div>
 
   <p class="note" id="note"></p>
 
@@ -270,6 +299,29 @@
     apply('');
   }
   if (!filters.children.length) filters.hidden = true;
+
+  // 강의 목록 — data.js 의 lectures 배열. 최신이 위, 번호는 오래된 것이 01. 없으면 탭도 섹션도 안 보인다
+  var lectures = D.lectures || [];
+  if (lectures.length) {
+    var nav = document.getElementById('nav');
+    var navA = el('a', null, 'Lectures'); navA.href = '#lectures'; nav.appendChild(navA);
+    var sec = document.getElementById('lectures'); sec.hidden = false;
+    document.getElementById('lec-count').textContent = lectures.length + (lectures.length === 1 ? ' lecture' : ' lectures');
+    var list = document.getElementById('lec-list');
+    lectures.forEach(function (L, i) {
+      var no = lectures.length - i;
+      var li = el('li');
+      var a = el(L.url ? 'a' : 'div', 'lec');
+      if (L.url) { a.href = L.url; a.target = '_blank'; a.rel = 'noopener'; }
+      var meta = [L.session, L.date].filter(Boolean).join(' · ');
+      a.innerHTML =
+        '<span class="no mono">Lec ' + pad(no) + '</span>' +
+        '<div class="lt">' + esc(L.title) + (L.url ? '<span class="arrow" aria-hidden="true">↗</span>' : '') + '</div>' +
+        (L.desc ? '<div class="ld">' + esc(L.desc) + '</div>' : '') +
+        (meta ? '<span class="lm mono">' + esc(meta) + '</span>' : '');
+      li.appendChild(a); list.appendChild(li);
+    });
+  }
 
 })();
 </script>
