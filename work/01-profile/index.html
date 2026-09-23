@@ -300,7 +300,7 @@
   const works = P.work || [];
   $("work").hidden = !has(works);
   $("work-lead").textContent = P.workLead || "3년 동안 완성한 대표 작업.";
-  const all = P.workAll || (C.channels || []).find((c) => /hub|flight|log|허브|비행/i.test(c.label))?.url || "";
+  const all = P.workAll || (C.channels || []).find((c) => /hub|log|허브/i.test(c.label))?.url || "";
   $("work-all").hidden = !all; if (all) $("work-all").href = all;
   let cls = "works";
   if (works.length === 4) cls += " two";
