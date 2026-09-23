@@ -6,6 +6,8 @@
     --ground: #ECEDED; --surface: #F7F7F6;
     --ink: #121414; --ink-2: #2A2E2F; --ink-soft: #676C6D; --line: #CFD3D3;
     --green: #1F8A5E; --green-deep: #15654A; --green-soft: #DDEEE5;
+    /* 키컬러: --accent 는 면(원·막대·목업), --accent-ink 는 글자·아이콘. 기본은 둘 다 초록 */
+    --accent: #1F8A5E; --accent-ink: #1F8A5E;
   }
   * { box-sizing: border-box; }
   html { color-scheme: light; scroll-behavior: smooth; }
@@ -15,12 +17,12 @@
   h1, h2, h3, p, ul { margin: 0; }
   ul { padding: 0; list-style: none; }
   a { color: inherit; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 3px; }
   [hidden] { display: none !important; }
   .display { font-family: "Anton", "Noto Sans KR", Impact, sans-serif; font-weight: 400; text-transform: uppercase; }
   .label { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 700; }
   .sec-title { font-size: 0.95rem; letter-spacing: 0.28em; text-transform: uppercase; font-weight: 700; line-height: 1.6; }
-  .more { color: var(--green); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; text-decoration: none; }
+  .more { color: var(--accent-ink); font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; text-decoration: none; }
   .more::after { content: "  \2192"; }
   .rule { height: 1px; background: var(--line); margin: 0 40px; }
   .soon { color: var(--ink-soft); }
@@ -41,14 +43,14 @@
   .hero .name span { display: block; }
   .hero .name span:first-child { font-size: clamp(2.6rem, 6.5vw, 4.6rem); letter-spacing: 0.04em; line-height: 1; color: var(--ink); }
   .hero .name span:last-child { font-size: clamp(5rem, 15vw, 11.5rem); line-height: 0.92; letter-spacing: -0.01em; margin-top: 0.1em; color: var(--ink); }
-  .hero .name span:last-child::after { content: ""; display: inline-block; width: 0.17em; height: 0.17em; border-radius: 50%; background: var(--green); margin-left: 0.08em; vertical-align: baseline; }
+  .hero .name span:last-child::after { content: ""; display: inline-block; width: 0.17em; height: 0.17em; border-radius: 50%; background: var(--accent); margin-left: 0.08em; vertical-align: baseline; }
   .hero .roles { margin-top: 18px; }
-  .hero .roles { font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--green); font-weight: 500; }
+  .hero .roles { font-size: 0.9rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent-ink); font-weight: 500; }
   .hero .pos { margin-top: 24px; font-size: 1.02rem; font-weight: 500; color: var(--ink); max-width: 26rem; }
   .hero .intro { margin-top: 4px; max-width: 26rem; font-size: 0.95rem; color: var(--ink-2); }
-  .hero .bar { width: 64px; height: 2px; background: var(--green); margin-top: 26px; }
+  .hero .bar { width: 64px; height: 2px; background: var(--accent); margin-top: 26px; }
   .hero-visual { position: relative; align-self: stretch; min-height: 480px; }
-  .circle { position: absolute; left: 4%; top: 14%; width: 74%; aspect-ratio: 1; border-radius: 50%; background: var(--green); }
+  .circle { position: absolute; left: 4%; top: 14%; width: 74%; aspect-ratio: 1; border-radius: 50%; background: var(--accent); }
   .photo { position: absolute; right: 0; bottom: 0; width: 88%; height: 96%; display: flex; align-items: flex-end; justify-content: center; }
   .photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; filter: grayscale(1); }
   .photo .frame { width: 100%; height: 100%; background: linear-gradient(180deg, rgba(247,247,246,0) 55%, rgba(18,20,20,0.10) 100%), radial-gradient(ellipse 60% 45% at 50% 40%, rgba(18,20,20,0.10), rgba(18,20,20,0) 70%); display: flex; align-items: center; justify-content: center; }
@@ -68,33 +70,33 @@
   .work .no { font-size: 0.85rem; font-weight: 700; letter-spacing: 0.06em; }
   .work .t { font-size: 0.8rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; line-height: 1.5; }
   .work .c { font-size: 0.78rem; color: var(--ink-soft); line-height: 1.5; }
-  .work .tick { width: 2rem; height: 2px; background: var(--green); margin-bottom: 14px; }
+  .work .tick { width: 2rem; height: 2px; background: var(--accent); margin-bottom: 14px; }
   .thumb { aspect-ratio: 1 / 1; background: #D8DCDC; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .5s ease; }
   .work:hover .thumb img { transform: scale(1.03); }
   .work .sum { margin-top: 12px; font-size: 0.86rem; color: var(--ink-2); }
-  .work .mini { color: var(--green); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; margin-left: 4px; }
+  .work .mini { color: var(--accent-ink); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; white-space: nowrap; margin-left: 4px; }
   .work:hover .mini { text-decoration: underline; text-underline-offset: 3px; }
   .mock-tract { width: 56%; aspect-ratio: 3/4; background: #F4F1EA; box-shadow: 0 18px 30px rgba(0,0,0,0.18); position: relative; padding: 10%; }
-  .mock-tract .sun { width: 46%; aspect-ratio: 1; border-radius: 50%; background: var(--green); margin: 8% auto 0; }
-  .mock-tract .ray { position: absolute; left: 50%; top: 18%; width: 1px; height: 22%; background: var(--green); transform-origin: bottom; }
+  .mock-tract .sun { width: 46%; aspect-ratio: 1; border-radius: 50%; background: var(--accent); margin: 8% auto 0; }
+  .mock-tract .ray { position: absolute; left: 50%; top: 18%; width: 1px; height: 22%; background: var(--accent); transform-origin: bottom; }
   .mock-tract .ln { height: 3px; background: #121414; margin: 6% auto 0; width: 60%; }
   .mock-tract .ln.s { width: 36%; height: 2px; opacity: 0.5; margin-top: 4%; }
   .mock-book { width: 78%; aspect-ratio: 1.45; display: grid; grid-template-columns: 1fr 1fr; box-shadow: 0 18px 30px rgba(0,0,0,0.18); background: #FFFDF8; }
   .mock-book .pg { padding: 12%; position: relative; border-right: 1px solid #E3DED2; }
   .mock-book .pg:last-child { border-right: none; }
-  .mock-book .hill { position: absolute; left: 0; right: 0; bottom: 0; height: 36%; background: var(--green); border-radius: 100% 100% 0 0 / 80% 80% 0 0; }
+  .mock-book .hill { position: absolute; left: 0; right: 0; bottom: 0; height: 36%; background: var(--accent); border-radius: 100% 100% 0 0 / 80% 80% 0 0; }
   .mock-book .moon { width: 30%; aspect-ratio: 1; border-radius: 50%; background: #121414; margin-left: auto; }
   .mock-book .txt { height: 2px; background: #121414; width: 70%; margin-top: 10%; opacity: 0.7; }
   .mock-book .txt.s { width: 45%; margin-top: 6%; opacity: 0.4; }
   .mock-game { width: 84%; aspect-ratio: 16/10; background: #121414; box-shadow: 0 18px 30px rgba(0,0,0,0.22); position: relative; padding: 6%; color: #F7F7F6; }
   .mock-game .hud { display: flex; justify-content: space-between; font-size: 0.55rem; letter-spacing: 0.14em; font-family: "Playfair Display", serif; }
   .mock-game .hp { height: 3px; background: #3A3E3E; margin-top: 6px; width: 40%; }
-  .mock-game .hp i { display: block; height: 100%; width: 72%; background: var(--green); }
+  .mock-game .hp i { display: block; height: 100%; width: 72%; background: var(--accent); }
   .mock-game .map { position: absolute; left: 6%; right: 6%; bottom: 6%; height: 52%; background: repeating-linear-gradient(0deg, #1E2222 0 2px, transparent 2px 10px), repeating-linear-gradient(90deg, #1E2222 0 2px, transparent 2px 10px); }
-  .mock-game .dot { position: absolute; left: 48%; bottom: 30%; width: 9%; aspect-ratio: 1; background: var(--green); }
+  .mock-game .dot { position: absolute; left: 48%; bottom: 30%; width: 9%; aspect-ratio: 1; background: var(--accent); }
   .mock-game .q { position: absolute; right: 8%; top: 30%; font-size: 0.7rem; line-height: 1.2; max-width: 40%; }
-  .mock-tile { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 8%; font-family: "Anton", sans-serif; font-size: 2rem; text-transform: uppercase; color: var(--surface); background: var(--green); line-height: 1; }
+  .mock-tile { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 8%; font-family: "Anton", sans-serif; font-size: 2rem; text-transform: uppercase; color: var(--surface); background: var(--accent); line-height: 1; }
 
   /* 3 + 4 : what i do | profile / proof  (참고 이미지의 Skills | Impact 구성) */
   .two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; }
@@ -105,7 +107,7 @@
   .cap svg { width: 18px; height: 18px; stroke: var(--ink); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; margin-top: 4px; }
   .cap .t { font-size: 0.74rem; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
   .cap .t i { width: 40px; height: 1.5px; background: var(--line); position: relative; flex: none; }
-  .cap .t i::after { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--green); transition: width .35s ease; }
+  .cap .t i::after { content: ""; position: absolute; left: 0; top: 0; height: 100%; width: 0; background: var(--accent); transition: width .35s ease; }
   .cap:hover .t i::after, .cap:focus-visible .t i::after, .cap.open .t i::after { width: 100%; }
   .cap .d { font-size: 0.86rem; color: var(--ink-2); max-height: 0; opacity: 0; overflow: hidden; transition: max-height .35s ease, opacity .3s ease, margin .3s ease; margin-top: 0; }
   .cap:hover .d, .cap:focus-visible .d, .cap.open .d { max-height: 4rem; opacity: 1; margin-top: 4px; }
@@ -120,11 +122,11 @@
   .facts { margin-top: 26px; display: grid; gap: 0; }
   .facts li { display: grid; grid-template-columns: 80px 1fr; gap: 14px; font-size: 0.9rem; color: var(--ink); padding: 10px 0; border-bottom: 1px solid var(--line); }
   .facts li:first-child { border-top: 1px solid var(--line); }
-  .facts li .label { color: var(--green); font-weight: 700; padding-top: 3px; letter-spacing: 0.12em; }
+  .facts li .label { color: var(--accent-ink); font-weight: 700; padding-top: 3px; letter-spacing: 0.12em; }
   .about-box { margin-top: 30px; border: 1px solid var(--line); padding: 24px 26px; display: grid; grid-template-columns: 36px 1fr; gap: 14px; }
-  .about-box .q { font-family: "Playfair Display", serif; font-size: 2.6rem; color: var(--green); line-height: 0.6; margin-top: 10px; }
+  .about-box .q { font-family: "Playfair Display", serif; font-size: 2.6rem; color: var(--accent-ink); line-height: 0.6; margin-top: 10px; }
   .about-box p { font-size: 0.9rem; color: var(--ink-2); }
-  .about-box .who { display: block; margin-top: 12px; color: var(--green); }
+  .about-box .who { display: block; margin-top: 12px; color: var(--accent-ink); }
   .cv { margin-top: 22px; display: inline-block; }
 
   /* 5 footer with contact */
@@ -135,13 +137,13 @@
   .group > .label { display: block; color: var(--ink); margin-bottom: 16px; }
   .items { display: grid; gap: 12px; align-content: start; }
   .item { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: center; font-size: 0.9rem; color: var(--ink-2); }
-  .item svg { width: 20px; height: 20px; stroke: var(--green); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+  .item svg { width: 20px; height: 20px; stroke: var(--accent-ink); fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
   .item a { text-decoration: none; border-bottom: 1px solid var(--line); justify-self: start; }
   .socials { display: flex; gap: 14px; flex-wrap: wrap; }
   .socials a, .socials span { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--ink); display: inline-flex; align-items: center; justify-content: center; color: var(--ink); text-decoration: none; }
   .socials span { border-color: var(--line); color: var(--ink-soft); }
   .socials svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
-  .socials a:hover { border-color: var(--green); color: var(--green); }
+  .socials a:hover { border-color: var(--accent-ink); color: var(--accent-ink); }
   .foot { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; color: var(--ink-soft); }
   .foot .label b { color: var(--ink); }
 
