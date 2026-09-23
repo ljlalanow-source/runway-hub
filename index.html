@@ -19,6 +19,7 @@
     --accent: #0057FF;
     --accent-ink: #0043C4;
     --accent-bg: #E9F0FF;
+    --accent-text: #FFFFFF;
     --shadow: 0 1px 2px rgba(20,24,28,0.06), 0 10px 30px -12px rgba(20,24,28,0.18);
     --display: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
     --body: "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -62,11 +63,13 @@
     font-size: clamp(1.9rem, 3.8vw, 3rem); line-height: 1.25; letter-spacing: -0.025em; text-wrap: balance;
   }
   .hero .intro { margin: 1.3rem 0 0; max-width: 34rem; color: var(--ink-2); font-size: 1rem; }
+  .hero .intro + .intro { margin-top: 0.95rem; }
+  .hero .bio { color: var(--ink); font-weight: 500; }
   .hero .intro b { color: var(--ink); font-weight: 500; }
-  .north { border-left: 2px solid var(--accent); padding: 0.2rem 0 0.2rem 1.25rem; }
-  .north .label { margin-bottom: 0.5rem; color: var(--accent-ink); }
-  .north .line { margin: 0; font-family: var(--display); font-size: 1.15rem; font-weight: 600; line-height: 1.5; letter-spacing: -0.01em; text-wrap: balance; }
-  .north .sub { margin: 0.5rem 0 0; color: var(--ink-2); font-size: 0.88rem; }
+  .goal { border-left: 2px solid var(--accent); padding: 0.2rem 0 0.2rem 1.25rem; }
+  .goal .label { margin-bottom: 0.5rem; color: var(--accent-ink); }
+  .goal .line { margin: 0; font-family: var(--display); font-size: 1.15rem; font-weight: 600; line-height: 1.5; letter-spacing: -0.01em; text-wrap: balance; }
+  .goal .sub { margin: 0.5rem 0 0; color: var(--ink-2); font-size: 0.88rem; }
 
   /* 섹션 머리 */
   .section-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; padding-bottom: 0.9rem; border-bottom: 1px solid var(--line); margin-bottom: 1.8rem; }
@@ -109,7 +112,7 @@
   .card-meta { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 1rem; padding: 0.95rem 0.1rem 0; align-items: baseline; }
   .card-meta .log { grid-row: 1 / span 2; padding-top: 0.25rem; }
   .card-meta .t { font-family: var(--display); font-weight: 600; font-size: 1.1rem; line-height: 1.4; letter-spacing: -0.015em; text-wrap: balance; }
-  .card-meta .t .arrow { display: inline-block; margin-left: 0.35em; color: var(--accent); opacity: 0; transform: translate(-4px, 2px); transition: opacity 0.2s, transform 0.2s; font-family: var(--body); }
+  .card-meta .t .arrow { display: inline-block; margin-left: 0.35em; color: var(--accent-ink); opacity: 0; transform: translate(-4px, 2px); transition: opacity 0.2s, transform 0.2s; font-family: var(--body); }
   a.card:hover .t .arrow, a.card:focus-visible .t .arrow { opacity: 1; transform: none; }
   .card-meta .s { font-size: 0.88rem; color: var(--ink-2); }
   .card-meta .tags { grid-column: 2; display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
@@ -117,7 +120,7 @@
   .badge {
     display: inline-block; vertical-align: 0.25em; margin-right: 0.5rem;
     font-family: var(--mono); font-size: 0.66rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-    background: var(--accent); color: #FFFFFF; border-radius: 3px; padding: 0.1rem 0.45rem;
+    background: var(--accent); color: var(--accent-text); border-radius: 3px; padding: 0.1rem 0.45rem;
   }
   .empty { grid-column: 1 / -1; color: var(--ink-2); padding: 3rem 0; text-align: center; }
 
@@ -135,12 +138,13 @@
     <div>
       <div class="eyebrow mono" id="eyebrow"></div>
       <h1 id="headline"></h1>
+      <p class="intro bio" id="bio"></p>
       <p class="intro" id="intro"></p>
     </div>
-    <div class="north" id="north" hidden>
-      <div class="label mono">North Star · 12월의 목표</div>
-      <p class="line" id="north-line"></p>
-      <p class="sub" id="north-sub"></p>
+    <div class="goal" id="goal" hidden>
+      <div class="label mono">2026 엔딩목표</div>
+      <p class="line" id="goal-line"></p>
+      <p class="sub" id="goal-sub"></p>
     </div>
   </div>
 
@@ -167,9 +171,27 @@
   var projects = D.projects || [];
   var showTags = P.showTags === true; // 태그 표시는 기본 숨김. data.js의 profile.showTags: true 로 켠다
 
-  if (P.accent) document.documentElement.style.setProperty('--accent', P.accent);
-  if (P.accentInk) document.documentElement.style.setProperty('--accent-ink', P.accentInk);
-  if (P.accentBg) document.documentElement.style.setProperty('--accent-bg', P.accentBg);
+  // 키컬러 하나(profile.accent)에서 글자용 진한 색·연한 배경·배지 글자색을 자동으로 만든다
+  function hexToHsl(hex) {
+    var m = /^#?([0-9a-f]{6})$/i.exec(hex || ''); if (!m) return null;
+    var n = parseInt(m[1], 16), r = (n >> 16) / 255, g = ((n >> 8) & 255) / 255, b = (n & 255) / 255;
+    var max = Math.max(r, g, b), min = Math.min(r, g, b), l = (max + min) / 2, h = 0, sat = 0, d = max - min;
+    if (d) { sat = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      h = max === r ? ((g - b) / d + (g < b ? 6 : 0)) : max === g ? ((b - r) / d + 2) : ((r - g) / d + 4); h /= 6; }
+    return { h: h, s: sat, l: l, lum: 0.2126 * r + 0.7152 * g + 0.0722 * b };
+  }
+  function hslToHex(h, s, l) {
+    function f(n) { var k = (n + h * 12) % 12, a = s * Math.min(l, 1 - l); var c = l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)); return Math.round(c * 255).toString(16).padStart(2, '0'); }
+    return '#' + f(0) + f(8) + f(4);
+  }
+  var hsl = hexToHsl(P.accent);
+  if (hsl) {
+    var R = document.documentElement.style;
+    R.setProperty('--accent', P.accent);
+    R.setProperty('--accent-ink', P.accentInk || hslToHex(hsl.h, Math.min(hsl.s, 0.9), Math.min(hsl.l, 0.34)));
+    R.setProperty('--accent-bg', P.accentBg || hslToHex(hsl.h, hsl.s, 0.94));
+    R.setProperty('--accent-text', P.accentText || (hsl.lum > 0.5 ? '#14181C' : '#FFFFFF'));
+  }
 
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
   function el(tag, cls, html) { var e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; }
@@ -177,21 +199,22 @@
 
   // 헤더 · 히어로 · 푸터
   document.title = P.siteTitle || ((P.name || '') + ' — RUNWAY');
-  document.getElementById('brand').innerHTML = esc(P.name) + ' <em>/</em> ' + esc(P.brand || 'RUNWAY');
-  document.getElementById('headline').textContent = P.headline || '';
+  document.getElementById('brand').innerHTML = esc(P.name) + ' <em>/</em> ' + esc(P.brand || 'AI Runway Log');
+  document.getElementById('headline').innerHTML = esc(P.headline || '').replace(/\n/g, '<br>');
+  var bio = document.getElementById('bio'); if (P.bio) bio.innerHTML = P.bio; else bio.hidden = true;
   document.getElementById('intro').innerHTML = P.intro || '';
   document.getElementById('note').textContent = P.note || '';
-  document.getElementById('foot-left').textContent = (P.name || '') + ' / ' + (P.brand || 'RUNWAY');
+  document.getElementById('foot-left').textContent = (P.name || '') + ' / ' + (P.brand || 'AI Runway Log');
   document.getElementById('foot-right').textContent = '© ' + new Date().getFullYear() + ' ' + (P.name || '');
 
-  var eyebrow = [P.eyebrow || 'AI Flight Log', projects.length + ' entries'];
+  var eyebrow = [P.eyebrow || 'AI Runway Log', projects.length + ' entries'];
   document.getElementById('eyebrow').innerHTML = eyebrow.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('');
   document.getElementById('work-count').textContent = projects.length + ' entries';
 
-  if (P.northstar) {
-    document.getElementById('north').hidden = false;
-    document.getElementById('north-line').textContent = P.northstar;
-    document.getElementById('north-sub').textContent = P.northstarNote || '';
+  if (P.goal) {
+    document.getElementById('goal').hidden = false;
+    document.getElementById('goal-line').textContent = P.goal;
+    document.getElementById('goal-sub').textContent = P.goalNote || '';
   }
 
   // 자동 타일 팔레트 — 제목마다 같은 색이 나오게 해시로 고른다

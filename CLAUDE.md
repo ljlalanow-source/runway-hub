@@ -76,11 +76,20 @@
 
 - `work/01-profile/INTERVIEW.md` — 인터뷰 대본. 사용자가 "INTERVIEW.md대로 인터뷰해줘"라고 하면 그대로 따른다.
 - `work/01-profile/profile.js` — 인터뷰 답이 들어가는 내용 파일. **이 파일만 채운다.** `index.html`은 틀이라 손대지 않는다.
-- 흐름: 기본 정보 7개 → 여덟 질문 → `profile.js` 채우기 → 확인 → `index.html`+`profile.js` 아티팩트 게시 → 허브 카드 `01-profile` 추가 → 허브 게시.
+- 흐름: 허브 설정 3개(이니셜·키컬러·2026 엔딩목표) → 기본 정보 → 여덟 질문 → `profile.js` 채우기 → 확인 → `index.html`+`profile.js` 아티팩트 게시 → 허브 `data.js` profile 채우기 → 카드 `01-profile` 추가 → 허브 게시.
 - 디자인은 기본 스타일이 디폴트. 바꾸고 싶으면 `index.html` 상단 `:root` 색과 서체만. 5개 영역 구조는 유지.
 
-허브 `data.js`의 `profile`은 인터뷰 결과로 맞춘다: `headline` ← 프로필의 한 문장(`hero.positioning`), `intro` ← 소개 1~2줄(`hero.intro`).
-`northstar`는 비워 둔다(2026-09-22 보류. 비면 허브에 안 보인다). `showTags`는 태그 표시 스위치(기본 false).
+### 허브 `data.js`의 `profile` — 인터뷰에서 정하는 것은 세 가지뿐
+
+| 항목 | 어디서 | 값 |
+|---|---|---|
+| `name` | INTERVIEW.md 0-1 | 이니셜. 예: "HS" |
+| `accent` | INTERVIEW.md 0-2 | 키컬러 hex 하나. 배지·엔딩목표 막대·강조색. 진한 글자색과 연한 배경은 페이지가 자동으로 만든다 |
+| `goal`, `goalNote` | INTERVIEW.md 0-3 | 2026 엔딩목표 한 줄 + 단계 한 줄(선택) |
+| `bio` | A3 답에서 | 내 정보 한 줄. 예: "커뮤니케이션 디자이너 엘제이." |
+
+`headline`("AI로 날개를 달고 / 멋진 것들을 만들어봐야지"), `intro`, `brand`("AI Runway Log"), `eyebrow`는 **다섯 명 공통 문구**라 바꾸지 않는다.
+`siteTitle`은 "이니셜 · AI Runway Log"로. `showTags`는 태그 표시 스위치(기본 false).
 **들은 것만** 쓴다. 듣지 않은 경력·수상·수치는 지어내지 않는다. 다 쓴 뒤 사용자에게 틀린 곳이 있는지 확인받는다.
 
 ## 안전 규칙

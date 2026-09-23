@@ -10,7 +10,7 @@
 2. Selected Work — 가장 크게. 정사각형 이미지 · 제목 · 분류 · 한 줄(summary) 끝에 작은 초록 "more →". 카드 전체가 링크. 카드 머리글 높이를 고정해 줄이 맞는다. 긴 설명·역할·성과는 홈에 안 나온다 (케이스 스터디용으로 profile.js에만 남김)
 3. Profile / Proof (왼쪽) — 이력 3~5줄(Now · Also · Since(`experience.background`) · Credential · Education, 내용은 한글) → 숫자 3개 → 인용 상자(인터뷰에서 나온 "나의 특별한 점" 한 문장, `about.body`)
 4. What I Do (오른쪽) — 제목만. 마우스를 올리거나 누르면 한 줄 설명
-5. Footer — Let's Connect 한 줄 + Get in touch(이메일 글자 · Flight Log. PDF는 `contact.download`를 채우면 나타남) + Follow along(`contact.social` 아이콘: linkedin · instagram · behance · github · dribbble) + 이름 · 저작권
+5. Footer — Let's Connect 한 줄 + Get in touch(이메일 글자 · AI Runway Log. PDF는 `contact.download`를 채우면 나타남) + Follow along(`contact.social` 아이콘: linkedin · instagram · behance · github · dribbble) + 이름 · 저작권
 
 빈 값은 자동으로 숨겨진다. 숫자가 없으면 `numbers: []`.
 
