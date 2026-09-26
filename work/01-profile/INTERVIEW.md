@@ -51,21 +51,17 @@
 | A6 | 인스타그램·링크드인 등 사이트에 걸 SNS 주소가 있나요? | `contact.social[].url` |
 | A7 | 프로필 사진으로 쓸 이미지 파일이 있나요? 있으면 이 폴더에 넣어 달라고 한다 | `hero.photo` |
 
-## B. 여덟 질문 (3년 뒤 시점)
+## B. 세 질문 (3년 뒤 시점)
 
 | # | 질문 | 들어가는 곳 |
 |---|---|---|
-| 1 | 3년 뒤, 당신의 이름 아래에 가장 먼저 적혀 있으면 좋을 세 가지 역할은 무엇인가요? (예: Founder · Creator · Author) | `hero.roles`, `footer.role` |
-| 2 | 그때의 당신을 한 문장으로 소개한다면? | `hero.positioning` (영문 한 줄이면 좋다. 한글이면 그대로) |
-| 3 | 지금과 비교했을 때 3년 뒤 가장 크게 달라져 있을 점은 무엇인가요? | `notes.changed` + 여기서 나온 소속·역할을 `experience.roles`로 정리 |
-| 4 | 당신이 잘하는 것으로 알려지고 싶은 것은 무엇인가요? | `notes.knownFor` → `about.body` 한 문장의 재료 |
-| 5 | 프로필의 What I Do 영역에 넣고 싶은 능력 4~6개는 무엇인가요? | `services[].title` (+ 한 줄 `desc`) |
-| 6 | 3년 동안 꼭 완성했다고 프로필에 올리고 싶은 대표 프로젝트 세 가지는 무엇인가요? | `work[]` — title · category · summary 한 줄 |
-| 7 | 받아보고 싶은 성과나 증거는 무엇인가요? | `notes.proof`. 숫자로 말했을 때만 `numbers` |
-| 8 | 반대로 3년 뒤에는 더 이상 하고 싶지 않은 일은 무엇인가요? | `notes.stop` (사이트에는 안 올라감) |
+| 1 | 3년 뒤 내 이름 아래 적히고 싶은 역할 3개 (명함)<br>예) Founder · Creator · Author · Designer · Director · CEO · PM | `hero.roles`, `footer.role` |
+| 2 | 3년 안에 꼭 완성하고 싶은 대표 프로젝트 3개<br>예) 브랜드 출시 / 앱 출시 / 전시 / 게임 제작 / 내게 딱 맞는 AI 에이전트 구성 등 | `work[]` — title · category · summary 한 줄 |
+| 3 | 3년 뒤 What I Do — 내가 갖고 싶은 능력 3개 이상 (추상적인 문장도 OK) | `services[].title` (+ 한 줄 `desc`) |
 
-질문 2와 4는 답이 길면 **한 문장 압축안 세 개**를 만들어 고르게 한다. 직접 쓰게 하지 않는다.
-`hero.intro`(소개 1~2줄)는 질문 2·3·5 답을 합쳐 초안을 쓰고 확인받는다.
+질문은 위 문구 그대로, 예시까지 함께 보여 준다.
+`hero.positioning`(한 줄 소개)·`hero.intro`(소개 1~2줄)·`about.body`는 세 답을 합쳐 초안을 쓰고 확인받는다. 사용자가 따로 말한 한 줄 소개가 있으면 그것을 쓴다.
+`experience.roles`·`numbers`·`notes`는 묻지 않는다. 사용자가 스스로 말한 것만 넣고, 없으면 비워 둔다.
 
 ## C. 채우기
 

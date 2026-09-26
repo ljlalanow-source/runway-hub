@@ -92,7 +92,7 @@
 
 - `work/01-profile/INTERVIEW.md` — 인터뷰 대본. 사용자가 "INTERVIEW.md대로 인터뷰해줘"라고 하면 그대로 따른다.
 - `work/01-profile/profile.js` — 인터뷰 답이 들어가는 내용 파일. **이 파일만 채운다.** `index.html`은 틀이라 손대지 않는다. 예외 하나: 키컬러 — `:root`의 `--accent` · `--accent-ink` · `--accent-text` 세 값을 INTERVIEW.md 0단계 표대로 바꿔 허브와 색을 맞춘다.
-- 흐름: 허브 설정 3개(이니셜·키컬러·2026 엔딩목표) → 기본 정보 → 여덟 질문 → `profile.js` 채우기 → 확인 → `index.html`+`profile.js` 아티팩트 게시 → 허브 `data.js` profile 채우기 → 카드 `01-profile` 추가 → 허브 게시.
+- 흐름: 허브 설정 3개(이니셜·키컬러·2026 엔딩목표) → 기본 정보 → 세 질문 → `profile.js` 채우기 → 확인 → `index.html`+`profile.js` 아티팩트 게시 → 허브 `data.js` profile 채우기 → 카드 `01-profile` 추가 → 허브 게시.
 - 디자인은 기본 스타일이 디폴트. 바꾸고 싶으면 `index.html` 상단 `:root` 색과 서체만. 5개 영역 구조는 유지.
 - 프로필 카드 썸네일은 INTERVIEW.md E의 **고정 앵글 캡처 명령**을 그대로 쓴다 (히어로만 크게, 3:2).
 
