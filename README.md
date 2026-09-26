@@ -7,9 +7,9 @@
 
 1. 바탕화면에 `AI스터디 RUNWAY` 폴더를 만듭니다
 2. 이 페이지 오른쪽 위 초록 **Code** 버튼 → **Download ZIP**
-3. 압축을 풀어 나온 `runway-hub-main` 폴더를 `AI스터디 RUNWAY` 안에 넣고, 이름을 `runway-hub`로 바꿉니다
+3. 압축을 풀어 나온 `runway-hub-main` 폴더를 이름 그대로 `AI스터디 RUNWAY` 안에 넣습니다
    - 윈도우는 `runway-hub-main` 안에 `runway-hub-main`이 한 번 더 들어 있을 수 있습니다. **`index.html`이 바로 보이는 안쪽 폴더**를 옮기세요
-4. VS Code에서 **파일 > 폴더 열기 → `runway-hub`** 선택. 왼쪽 탐색기에 `index.html`, `CLAUDE.md`가 바로 보이면 맞습니다
+4. VS Code에서 **파일 > 폴더 열기 → `runway-hub-main`** 선택. 왼쪽 탐색기에 `index.html`, `CLAUDE.md`가 바로 보이면 맞습니다
 5. 클로드 코드에 아래를 그대로 붙여넣습니다
 
 ```
@@ -24,12 +24,12 @@ work/01-profile/INTERVIEW.md대로 나를 인터뷰해줘.
 ```
 바탕화면
 └── AI스터디 RUNWAY
-    ├── runway-hub   ← 허브. VS Code로 여는 폴더. 12월까지 이것 하나만
-    ├── 1st          ← 1회차 자료 (강의 노트, 사진 원본 등)
+    ├── runway-hub-main   ← 허브. VS Code로 여는 폴더. 12월까지 이것 하나만
+    ├── 1st               ← 1회차 자료 (강의 노트, 사진 원본 등)
     └── 2nd …
 ```
 
-`runway-hub`는 12월까지 계속 쓰는 폴더입니다. 다시 받거나 옮기지 않습니다.
+`runway-hub-main`은 12월까지 계속 쓰는 폴더입니다. 다시 받거나 옮기지 않습니다.
 
 ## 폴더
 
