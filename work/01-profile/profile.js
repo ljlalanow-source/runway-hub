@@ -22,29 +22,22 @@ window.PROFILE = {
 
   // SECTION 2 — SELECTED WORK (질문 2, 3~5개). 홈에는 image · title · category · summary · url 만 보인다.
   work: [
-    { title: "", category: "", summary: "", image: "", mock: "", url: "" },
-    { title: "", category: "", summary: "", image: "", mock: "", url: "" },
-    { title: "", category: "", summary: "", image: "", mock: "", url: "" }
+    // { title: "", category: "", summary: "", image: "", mock: "", url: "" }
   ],
   // image가 없을 때 mock: "tract" | "book" | "game" 또는 비우면 제목 타일
 
   // SECTION 3 — WHAT I DO (질문 3, 3~6개). 제목만 보이고 desc는 마우스를 올리면 나타난다.
   // icon: direction | story | visual | ip | product | ai | research | design | code
   services: [
-    { icon: "direction", title: "", desc: "" },
-    { icon: "story",     title: "", desc: "" },
-    { icon: "visual",    title: "", desc: "" },
-    { icon: "product",   title: "", desc: "" }
+    // { icon: "direction", title: "", desc: "" }
   ],
 
   // SECTION 4 — PROFILE / PROOF
   experience: {
     // 3년 뒤의 역할들. 첫 항목이 Now, 나머지가 Also
-    roles: [
-      { title: "", org: "", period: "2029 — 현재" }
-    ],
+    roles: [],            // 예: { title: "Founder", org: "○○ 스튜디오", period: "2029 — 현재" }
     // Since 줄. 경력 시작 연도만 알면 "N년차"가 자동 계산된다 (meta.year 기준)
-    since: { start: 2016, field: "직무명", degree: "전공 학사" },
+    since: {},            // 예: { start: 2019, field: "해외영업", degree: "경영학 학사" }
     background: "",       // 직접 쓰고 싶으면 여기에. 있으면 since보다 우선
     education: [],        // 예: { title: "시각디자인 학사", org: "학교", period: "2016" }
     credentials: []       // 자격·수상·출판. 예: { title: "○○상", org: "주최", period: "2028" }
@@ -52,7 +45,7 @@ window.PROFILE = {
   numbers: [              // 묻지 않는다. 사용자가 수치를 말했을 때만. 앞 3개만 보인다. 실제 수치가 없으면 [] — 억지로 만들지 않는다
   ],
   about: {                // 세 답에서 나온 "나의 특별한 점"을 한 문장으로. 임팩트 있고 간결하게
-    body: [""]
+    body: []              // 예: ["한 문장."]
   },
 
   // SECTION 5 — FOOTER (Contact 포함)

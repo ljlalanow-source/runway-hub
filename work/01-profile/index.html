@@ -1,4 +1,4 @@
-<title>LJ 2030</title>
+<title>3년 뒤의 나 · 프로필</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Noto+Sans+KR:wght@300;400;500;700&display=swap">
 <style>
@@ -98,11 +98,13 @@
   .mock-game .map { position: absolute; left: 6%; right: 6%; bottom: 6%; height: 52%; background: repeating-linear-gradient(0deg, #1E2222 0 2px, transparent 2px 10px), repeating-linear-gradient(90deg, #1E2222 0 2px, transparent 2px 10px); }
   .mock-game .dot { position: absolute; left: 48%; bottom: 30%; width: 9%; aspect-ratio: 1; background: var(--accent); }
   .mock-game .q { position: absolute; right: 8%; top: 30%; font-size: 0.7rem; line-height: 1.2; max-width: 40%; }
-  .mock-tile { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 8%; font-family: "Anton", sans-serif; font-size: 2rem; text-transform: uppercase; color: var(--surface); background: var(--accent); line-height: 1; }
+  .mock-tile { width: 100%; height: 100%; display: flex; align-items: flex-end; padding: 8%; font-family: "Anton", sans-serif; font-size: 2rem; text-transform: uppercase; color: var(--accent-text); background: var(--accent); line-height: 1; }
 
   /* 3 + 4 : what i do | profile / proof  (참고 이미지의 Skills | Impact 구성) */
   .two { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; }
   .two > div:last-child { border-left: 1px solid var(--line); padding-left: 48px; }
+  .two.solo { grid-template-columns: 1fr; }
+  .two.solo > div { border: none !important; padding: 0 !important; }   /* Profile·What I Do 중 하나만 있을 때 */
   .caps { margin-top: 26px; display: grid; }
   .cap { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start; padding: 12px 0; border-bottom: 1px solid var(--line); background: none; border-top: 0; border-left: 0; border-right: 0; width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer; }
   .cap:first-child { border-top: 1px solid var(--line); }
@@ -205,10 +207,10 @@
     <div class="works" id="work-list"></div>
   </section>
 
-  <div class="rule"></div>
+  <div class="rule" id="two-rule"></div>
 
   <!-- 3 PROFILE / PROOF  |  4 WHAT I DO -->
-  <section class="two">
+  <section class="two" id="two">
     <div id="profile">
       <h2 class="sec-title">Profile</h2>
       <ul class="facts" id="fact-list"></ul>
@@ -297,7 +299,7 @@
   $("hero-photo").innerHTML = H.photo ? `<img src="${esc(H.photo)}" alt="${esc(H.name)}">` : `<div class="frame"></div>`;
 
   // 2 selected work
-  const works = P.work || [];
+  const works = (P.work || []).filter((w) => w && (w.title || "").trim());
   $("work").hidden = !has(works);
   $("work-lead").textContent = P.workLead || "3년 동안 완성한 대표 작업.";
   const all = P.workAll || (C.channels || []).find((c) => /hub|log|허브/i.test(c.label))?.url || "";
@@ -315,7 +317,7 @@
     </a>`).join("");
 
   // 3 what i do (title only; desc on hover / tap)
-  const sv = P.services || [];
+  const sv = (P.services || []).filter((s) => s && (s.title || "").trim());
   $("services").hidden = !has(sv);
   $("cap-list").innerHTML = sv.map((s) => `
     <button class="cap" type="button">${ICONS[s.icon] || ICONS.dot}<div><div class="t"><span>${esc(s.title)}</span><i></i></div>${s.desc ? `<div class="d">${esc(s.desc)}</div>` : ""}</div></button>`).join("");
@@ -325,10 +327,11 @@
   const nums = (P.numbers || []).slice(0, 3);
   $("num-list").hidden = !has(nums);
   $("num-list").innerHTML = nums.map((n) => `<div class="num"><div class="n">${esc(n.value)}${n.suffix ? `<sup>${esc(n.suffix)}</sup>` : ""}</div><span class="label">${esc(n.label)}</span></div>`).join("");
-  const cur = (ex.roles || [])[0];
+  const exRoles = (ex.roles || []).filter((r) => r && (r.title || "").trim());
+  const cur = exRoles[0];
   const facts = [];
   if (cur) facts.push(["Now", `${cur.title}${cur.org ? " · " + cur.org : ""}${cur.period ? " · " + cur.period : ""}`]);
-  (ex.roles || []).slice(1, 3).forEach((r) => facts.push(["Also", `${r.title}${r.org ? " · " + r.org : ""}${r.period ? " · " + r.period : ""}`]));
+  exRoles.slice(1, 3).forEach((r) => facts.push(["Also", `${r.title}${r.org ? " · " + r.org : ""}${r.period ? " · " + r.period : ""}`]));
   // Since 줄: background 문자열이 있으면 그대로, 없으면 since{start, field, degree}로 "N년차 …" 자동 계산
   const sinceLine = ex.background || (ex.since?.start
     ? `${(parseInt(P.meta?.year, 10) || new Date().getFullYear()) - ex.since.start + 1}년차 ${ex.since.field || ""}${ex.since.degree ? ` (${ex.since.degree})` : ""}`.trim()
@@ -338,11 +341,15 @@
   (ex.education || []).slice(0, 1).forEach((r) => facts.push(["Education", `${r.title}${r.org ? " · " + r.org : ""}`]));
   $("fact-list").innerHTML = facts.slice(0, 5).map(([k, v]) => `<li><span class="label">${esc(k)}</span><span>${esc(v)}</span></li>`).join("");
   $("fact-list").hidden = !facts.length;
-  const aboutText = (ab.body || []).slice(0, 3);
+  const aboutText = (ab.body || []).filter((p) => (p || "").trim()).slice(0, 3);
   $("about-box").hidden = !aboutText.length;
   $("about-body").innerHTML = aboutText.map((p) => `<p>${esc(p)}</p>`).join("");
   $("about-who").textContent = `${F.name || H.name || ""}${roles.length ? " · " + roles.join(" · ") : ""}`;
   if (C.download?.url) { $("cv-link").hidden = false; $("cv-link").href = C.download.url; $("cv-link").textContent = C.download.label || "Download CV"; }
+  // 내용이 하나도 없으면 제목(Profile)째 숨기고, 두 단이 다 비면 구역과 위 구분선까지 숨긴다
+  $("profile").hidden = !facts.length && !has(nums) && !aboutText.length && !C.download?.url;
+  $("two").classList.toggle("solo", $("profile").hidden !== $("services").hidden);
+  $("two").hidden = $("two-rule").hidden = $("profile").hidden && $("services").hidden;
 
   // 5 footer + contact
   const mail = C.email ? `mailto:${C.email}` : "";
